@@ -1,4 +1,4 @@
-# Auto-sclaing group
+# Auto-scaling group
 - Auto-scaling is an AWS service , I used to create asg module to make deploiment easier and faster.
 - Input Variables :
  1. name : name of ASG.
