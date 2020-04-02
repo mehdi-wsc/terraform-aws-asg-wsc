@@ -10,6 +10,13 @@ resource "aws_launch_template" "template" {
   monitoring {
     enabled = true
   }
+  
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name           = "${var.name}"
+
+    }
 network_interfaces {
   associate_public_ip_address =var.ip
   security_groups =var.security_groups
