@@ -25,7 +25,6 @@ network_interfaces {
 }
 
 
-
 resource "aws_autoscaling_group" "asg" {
   name                      = var.name
   max_size                  = var.max_size
