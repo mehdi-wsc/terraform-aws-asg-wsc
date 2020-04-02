@@ -17,6 +17,7 @@ resource "aws_launch_template" "template" {
       Name           = "${var.name}"
 
     }
+    }
 network_interfaces {
   associate_public_ip_address =var.ip
   security_groups =var.security_groups
