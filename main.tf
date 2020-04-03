@@ -10,20 +10,26 @@ resource "aws_launch_template" "template" {
   monitoring {
     enabled = true
   }
-  
-  tag_specifications {
-    resource_type = "instance"
-    tags = {
-      Name           = "${var.name}"
 
-    }
-    }
 network_interfaces {
   associate_public_ip_address =var.ip
   security_groups =var.security_groups
 }
 
+
+
+tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name           = "${var.name}"
+      owner          = "mehdi"
+      account        = terraform.workspace
+      createdOn      = timestamp()
+      taggingVersion = "1.0.0"
+    }
+  }
 }
+
 
 
 resource "aws_autoscaling_group" "asg" {
@@ -35,8 +41,18 @@ resource "aws_autoscaling_group" "asg" {
   desired_capacity          = var.desired_capacity
   force_delete              = var.force_delete
   vpc_zone_identifier       = var.vpc_zone_identifier
+
   launch_template {
     id      = aws_launch_template.template.id
     version = "$Latest"
   }
+ tag {
+    key                 = "Name"
+    value               = "${var.name}"
+    propagate_at_launch = true
+  }
+
+
+
+
 }
