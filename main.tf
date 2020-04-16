@@ -21,7 +21,7 @@ network_interfaces {
 tag_specifications {
     resource_type = "instance"
     tags = {
-      Name           = "${var.name}"
+      Name           = var.name
       owner          = "mehdi"
       account        = terraform.workspace
       createdOn      = timestamp()
@@ -51,8 +51,5 @@ resource "aws_autoscaling_group" "asg" {
     value               = "${var.name}"
     propagate_at_launch = true
   }
-
-
-
 
 }
