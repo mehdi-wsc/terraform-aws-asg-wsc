@@ -1,17 +1,17 @@
 resource "aws_launch_template" "template" {
-  name = var.name_config
-  image_id = var.ami
+  name          = var.name_config
+  image_id      = var.ami
   instance_type = var.instance_type
-  key_name =var.key
+  key_name      = var.key
 
   monitoring {
     enabled = true
   }
 
   network_interfaces {
-    associate_public_ip_address =var.ip
-    security_groups =var.security_groups
-    delete_on_termination = true
+    associate_public_ip_address = var.ip
+    security_groups             = var.security_groups
+    delete_on_termination       = true
   }
 
   tag_specifications {
@@ -20,13 +20,10 @@ resource "aws_launch_template" "template" {
       Name           = var.name
       owner          = "mehdi"
       account        = terraform.workspace
-      # createdOn      = timestamp()
       taggingVersion = "1.0.0"
     }
   }
 }
-
-
 
 resource "aws_autoscaling_group" "asg" {
   name                      = var.name
