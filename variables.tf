@@ -12,6 +12,7 @@ variable "key" {}
 variable "ip" {}
 variable "security_groups" {}
 variable "name_config" {}
+variable "owner" {}
 
 
 
