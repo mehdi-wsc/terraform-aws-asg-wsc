@@ -41,13 +41,11 @@ resource "aws_autoscaling_group" "asg" {
     version = "$Latest"
   }
 
-  tags = {
-    Name           = var.name
-    owner          = var.owner
-    account        = terraform.workspace
-    createdBy      = var.firstname
-    taggingVersion = "1.0.0"
+  tag {
+    key                 = "Name"
+    value               = var.name
+    propagate_at_launch = true
   }
-  propagate_at_launch = true
+
 
 }
