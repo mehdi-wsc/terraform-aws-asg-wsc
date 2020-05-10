@@ -18,7 +18,7 @@ resource "aws_launch_template" "template" {
     resource_type = "instance"
     tags = {
       Name           = var.name
-      owner          = "mehdi"
+      owner          = var.owner
       account        = terraform.workspace
       taggingVersion = "1.0.0"
     }
