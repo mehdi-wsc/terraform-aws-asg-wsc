@@ -1,10 +1,10 @@
 # terraform-aws-asg
 
 - ``` terraform-aws-asg ``` is a Terraform module to create Auto-scaling group and launch template.
+- it's an opensource module under GPL license
 
 ## Usage
 ```
-
 module "autoscale_group" {
 
   source  = "mehdi-wsc/asg-wsc/aws"
@@ -24,7 +24,6 @@ module "autoscale_group" {
   key                       = "test.key"
   ip                        = false
   security_groups           = ["sg-xxxxxxxx"]
-
 }
 ```
 
