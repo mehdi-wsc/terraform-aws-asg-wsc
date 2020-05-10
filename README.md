@@ -1,35 +1,81 @@
-# Auto-scaling group
-- Auto-scaling is an AWS service , I used to create asg module to make deploiment easier and faster.
-- Input Variables :
- 1. name : name of ASG.
- 2. max_size : Maximum number of instances.
+# terraform-aws-asg
 
- 3. min_size : Minimum number of instances.
+- ``` terraform-aws-asg ``` is a Terraform module to create Auto-scaling group and launch template.
 
- 4. health_check_grace_period : period to check instances health.
+## Usage
+```
 
- 5. health_check_type : type of health check
+module "autoscale_group" {
 
- 6. desired_capacity : Desire number of instances
+  source  = "mehdi-wsc/asg-wsc/aws"
+  version = "0.0.6"
 
- 7. force_delete : allows deleting the autoscaling group
- without waiting for all instances in the pool to terminate.
+  name                      = "test"
+  max_size                  = "5"
+  min_size                  = "2"
+  health_check_grace_period = "300"
+  health_check_type         = "ELB"
+  desired_capacity          = "3"
+  force_delete              = true
+  vpc_zone_identifier       = "subnet-xxxxxxxx"
+  ami                       = data.aws_ami.debian.id
+  name_config               = "test"
+  instance_type             = "t2.micro"
+  key                       = "test.key"
+  ip                        = false
+  security_groups           = ["sg-xxxxxxxx"]
 
- 8. vpc_zone_identifier: define subnets.
+}
+```
 
- 9. name_config: Name of template configuration.
+## Input Variables:
 
- 10. ami : Ami used in template.
+| name                      | description                                                                                       | type         | required |
+|---------------------------|---------------------------------------------------------------------------------------------------|--------------|----------|
+| name                      | name of ASG.                                                                                      | string       | yes      |
+| max_size                  | Maximum number of instances.                                                                      | number       | yes      |
+| min_size                  | Minimum number of instances.                                                                      | number       | yes      |
+| desired_capacity          | Desire number of instances                                                                        | number       | yes      |
+| vpc_zone_identifier       | define subnets.                                                                                   | list(string) | yes      |
+| health_check_type         | type of health check                                                                              | string       | no       |
+| health_check_grace_period | period to check instances health.                                                                 | number       | no       |
+| force_delete              | allows deleting the autoscaling group without waiting for all instances in the pool to terminate. | bool         | no       |
+| name_config               | Name of template configuration.                                                                   | string       | yes      |
+| ami                       | Ami id used in template.                                                                          | string       | yes      |
+| instance_type             | the instance type                                                                                 | string       | yes      |
+| key                       | ssh keys to access in instances.                                                                  | string       | yes      |
+| security_groups           | A list of security group IDs to associate.                                                        | list(string) | yes      |
+| ip                        | Associate a public ip address with the network interface.                                         | bool         | no       |
 
- 11. instance_type : instance type :
+## Output Variables:
 
- 12. key : ssh keys to access in instances.
+| name         | description          |
+|--------------|----------------------|
+| id           | auto scale group id  |
+| asg_arn      | auto scale group arn |
+| template_id  | launch template id   |
+| template_arn |  launch template arn |
 
- 13. ip : allow or denny ip public.
+## License:
+```
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
 
- 14. security_groups : defined security groups.
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
- 15. name_config: Name of template configuration.
+                            Preamble
 
-- Output Variables :
-  1. ID : asg id.
+  The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+
+  The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+the GNU General Public License is intended to guarantee your freedom to
+share and change all versions of a program--to make sure it remains free
+software for all its users.  We, the Free Software Foundation, use the
+GNU General Public License for most of our software; it applies also to
+any other work released this way by its authors.  You can apply it to
+your programs, too.
+```
