@@ -31,6 +31,9 @@ module "autoscale_group" {
 
 | name                      | description                                                                                       | type         | required |
 |---------------------------|---------------------------------------------------------------------------------------------------|--------------|----------|
+| owner                     | The Owner of account                                                                              | string       | yes      |
+| firstname                 | Your first name                                                                                   | string       | yes      |
+| lastname                  | Your last name                                                                                    | string       | yes      |
 | name                      | name of ASG.                                                                                      | string       | yes      |
 | max_size                  | Maximum number of instances.                                                                      | number       | yes      |
 | min_size                  | Minimum number of instances.                                                                      | number       | yes      |
@@ -45,6 +48,7 @@ module "autoscale_group" {
 | key                       | ssh keys to access in instances.                                                                  | string       | yes      |
 | security_groups           | A list of security group IDs to associate.                                                        | list(string) | yes      |
 | ip                        | Associate a public ip address with the network interface.                                         | bool         | no       |
+
 
 ## Output Variables:
 

@@ -20,6 +20,7 @@ resource "aws_launch_template" "template" {
       Name           = var.name
       owner          = var.owner
       account        = terraform.workspace
+      createdBy      = var.firstname
       taggingVersion = "1.0.0"
     }
   }
