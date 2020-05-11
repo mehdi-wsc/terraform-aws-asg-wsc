@@ -31,7 +31,7 @@ resource "aws_autoscaling_group" "asg" {
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_grace_period = var.health_check_grace_period
-  health_check_type         = "ELB"
+  health_check_type         = var.health_check_type
   desired_capacity          = var.desired_capacity
   force_delete              = var.force_delete
   vpc_zone_identifier       = var.vpc_zone_identifier
