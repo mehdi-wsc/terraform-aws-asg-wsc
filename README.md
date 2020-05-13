@@ -11,6 +11,10 @@ module "autoscale_group" {
   version = "0.0.6"
 
   name                      = "test"
+  firstname                 = "antoine"
+  lastname                  = "xavier"
+  owner                     = "Aws"
+
   max_size                  = "5"
   min_size                  = "2"
   health_check_grace_period = "300"
