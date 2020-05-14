@@ -17,9 +17,24 @@ variable "force_delete" {
 variable "vpc_zone_identifier" {}
 variable "ami" {}
 variable "instance_type" {}
-variable "key" {}
-variable "ip" {}
-variable "security_groups" {}
+variable "key" {
+  type        = string
+  description = "The SSH key name that should be used for the instance"
+  default     = ""
+}
+variable "ip" {
+  type        = bool
+  description = "Associate a public IP address with an instance in a VPC"
+  default     = false
+}
+
+variable "security_groups" {
+
+  description = "A list of associated security group IDs"
+  type        = list(string)
+  default     = []
+
+}
 variable "name_config" {}
 variable "owner" {}
 variable "firstname" {}
