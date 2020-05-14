@@ -22,7 +22,7 @@ module "autoscale_group" {
   desired_capacity          = "3"
   force_delete              = true
   vpc_zone_identifier       = "subnet-xxxxxxxx"
-  ami                       = data.aws_ami.debian.id
+  ami                       = "ami-5bdafa2c"
   name_config               = "test"
   instance_type             = "t2.micro"
   key                       = "test.key"
@@ -35,9 +35,9 @@ module "autoscale_group" {
 
 | name                      | description                                                                                       | type         | required |
 |---------------------------|---------------------------------------------------------------------------------------------------|--------------|----------|
-| owner                     | The Owner of account                                                                              | string       | yes      |
-| firstname                 | Your first name                                                                                   | string       | yes      |
-| lastname                  | Your last name                                                                                    | string       | yes      |
+| owner                     | The Owner of account                                                                              | string       | no       |
+| firstname                 | Your first name                                                                                   | string       | no       |
+| lastname                  | Your last name                                                                                    | string       | no       |
 | name                      | name of ASG.                                                                                      | string       | yes      |
 | max_size                  | Maximum number of instances.                                                                      | number       | yes      |
 | min_size                  | Minimum number of instances.                                                                      | number       | yes      |
@@ -47,10 +47,10 @@ module "autoscale_group" {
 | health_check_grace_period | period to check instances health.                                                                 | number       | no       |
 | force_delete              | allows deleting the autoscaling group without waiting for all instances in the pool to terminate. | bool         | no       |
 | name_config               | Name of template configuration.                                                                   | string       | yes      |
-| ami                       | Ami id used in template.                                                                          | string       | yes      |
+| ami                       | Ami id used in template.                                                                          | string       | no       |
 | instance_type             | the instance type                                                                                 | string       | yes      |
-| key                       | ssh keys to access in instances.                                                                  | string       | yes      |
-| security_groups           | A list of security group IDs to associate.                                                        | list(string) | yes      |
+| key                       | ssh keys to access in instances.                                                                  | string       | no       |
+| security_groups           | A list of security group IDs to associate.                                                        | list(string) | no           |
 | ip                        | Associate a public ip address with the network interface.                                         | bool         | no       |
 
 
