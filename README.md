@@ -59,6 +59,7 @@ module "autoscale_group" {
 | name         | description          |
 |--------------|----------------------|
 | id           | auto scale group id  |
+| name         | auto scale group name|
 | asg_arn      | auto scale group arn |
 | template_id  | launch template id   |
 | template_arn |  launch template arn |
