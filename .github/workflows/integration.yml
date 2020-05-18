@@ -12,7 +12,7 @@ jobs:
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v1.0.1
         with:
-          terraform_version: 0.12.21
+          terraform_version: 0.12.24
       - name: Download Terraform modules
         working-directory: test
         run: go get "github.com/gruntwork-io/terratest/modules/terraform"   
