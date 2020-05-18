@@ -8,14 +8,20 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
+func TestSyntaxForIntegration(t *testing.T) {
+	terraformOptions := &terraform.Options{
+		TerraformDir: "../example",
+	}
+	terraform.RunTerraformCommandE(t, terraformOptions, terraform.FormatArgs(terraformOptions, "fmt", "--check")...)
+
+}
+
 func TestIntegrationAsg(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../example",
 	}
 
 	region := "eu-west-1"
-
-	terraform.RunTerraformCommandAndGetStdoutE(t, terraformOptions, terraform.FormatArgs(terraformOptions, "fmt")...)
 
 	defer terraform.Destroy(t, terraformOptions)
 
