@@ -6,10 +6,17 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestSyntaxForIntegration(t *testing.T) {
+func TestSyntaxForRoot(t *testing.T) {
+	terraformOptions := &terraform.Options{
+		TerraformDir: "../",
+	}
+	terraform.RunTerraformCommand(t, terraformOptions, terraform.FormatArgs(terraformOptions, "fmt", "--check")...)
+
+}
+func TestSyntaxForExample(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../example",
 	}
-	terraform.RunTerraformCommandE(t, terraformOptions, terraform.FormatArgs(terraformOptions, "fmt", "--check")...)
+	terraform.RunTerraformCommand(t, terraformOptions, terraform.FormatArgs(terraformOptions, "fmt", "--check")...)
 
 }
